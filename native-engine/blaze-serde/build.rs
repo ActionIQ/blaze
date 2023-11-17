@@ -18,6 +18,7 @@ fn main() -> Result<(), String> {
 
     println!("cargo:rerun-if-changed=proto/blaze.proto");
     tonic_build::configure()
+        .protoc_arg("--experimental_allow_proto3_optional")
         .compile(&["proto/blaze.proto"], &["proto"])
         .map_err(|e| format!("protobuf compilation failed: {}", e))
 }
